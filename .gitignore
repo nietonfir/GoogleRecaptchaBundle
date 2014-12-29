@@ -1,0 +1,18 @@
+# Composer PHAR
+/composer.phar
+/composer.lock
+
+# PHPUnit
+/phpunit.xml
+
+# Managed by Composer
+/coverage
+/bin/*
+/vendor/
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
