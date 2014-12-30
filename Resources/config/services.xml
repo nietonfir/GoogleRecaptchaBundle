@@ -4,13 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+    <parameters>
+        <parameter key="nietonfir_google_recaptcha.form.type.recaptcha.class">Nietonfir\Google\ReCaptchaBundle\Form\Type\ReCaptchaType</parameter>
+    </parameters>
+
     <services>
-        <service id="nietonfir_google_re_captcha.example" class="Nietonfir\Google\ReCaptchaBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="nietonfir_google_recaptcha.form.type.recaptcha" class="%nietonfir_google_recaptcha.form.type.recaptcha.class%">
+            <!-- TODO - should be set via bundle configuration -->
+            <argument>%sitekey%</argument>
+            <tag name="form.type" alias="recaptcha" />
         </service>
     </services>
-    -->
 </container>

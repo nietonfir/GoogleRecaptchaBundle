@@ -7,12 +7,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ReCaptchaType extends AbstractType
 {
+    private $sitekey;
+
+    public function __construct($sitekey)
+    {
+        $this->sitekey = $sitekey;
+    }
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'mapped' => false,
             'attr' => array(
-                'data-sitekey' => '',
+                'data-sitekey' => $this->sitekey,
                 'class' => 'g-recaptcha'
             )
         ));
