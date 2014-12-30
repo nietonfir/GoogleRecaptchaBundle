@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="nietonfir_google_recaptcha.form.type.recaptcha.class">Nietonfir\Google\ReCaptchaBundle\Form\Type\ReCaptchaType</parameter>
+        <parameter key="nietonfir_google_recaptcha.recaptcha_listener.class">Nietonfir\Google\ReCaptchaBundle\EventListener\ReCaptchaListener</parameter>
     </parameters>
 
     <services>
@@ -13,6 +14,10 @@
             <!-- TODO - should be set via bundle configuration -->
             <argument>%sitekey%</argument>
             <tag name="form.type" alias="recaptcha" />
+        </service>
+
+        <service id="nietonfir_google_recaptcha.recaptcha_listener" class="%nietonfir_google_recaptcha.recaptcha_listener.class%">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
         </service>
     </services>
 </container>
