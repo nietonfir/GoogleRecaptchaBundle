@@ -20,9 +20,24 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('nietonfir_google_re_captcha');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('validation')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->children()
+                        ->scalarNode('form_name')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('field_name')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end() // validation
+            ->end()
+        ;
 
         return $treeBuilder;
     }

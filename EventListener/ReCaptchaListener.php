@@ -7,9 +7,15 @@ use Nietonfir\Google\ReCaptchaBundle\Controller\ReCaptchaValidationInterface;
 
 class ReCaptchaListener
 {
-    private $form = 'task';
+    private $form;
 
-    private $field = 'recaptcha';
+    private $field;
+
+    public function __construct($form, $field)
+    {
+        $this->form = $form;
+        $this->field = $field;
+    }
 
     public function onKernelController(FilterControllerEvent $event)
     {

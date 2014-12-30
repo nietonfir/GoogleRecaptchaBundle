@@ -22,6 +22,11 @@ class NietonfirGoogleReCaptchaExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        // set required validation parameters
+        foreach($config['validation'] as $k => $v) {
+            $container->setParameter('nietonfir_google_re_captcha.validation.' . $k, $v);
+        }
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

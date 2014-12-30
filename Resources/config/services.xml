@@ -17,6 +17,8 @@
         </service>
 
         <service id="nietonfir_google_recaptcha.recaptcha_listener" class="%nietonfir_google_recaptcha.recaptcha_listener.class%">
+            <argument>%nietonfir_google_re_captcha.validation.form_name%</argument>
+            <argument>%nietonfir_google_re_captcha.validation.field_name%</argument>
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
         </service>
     </services>
