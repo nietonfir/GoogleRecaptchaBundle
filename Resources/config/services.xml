@@ -11,8 +11,7 @@
 
     <services>
         <service id="nietonfir_google_recaptcha.form.type.recaptcha" class="%nietonfir_google_recaptcha.form.type.recaptcha.class%">
-            <!-- TODO - should be set via bundle configuration -->
-            <argument>%sitekey%</argument>
+            <argument>%nietonfir_google_re_captcha.sitekey%</argument>
             <tag name="form.type" alias="recaptcha" />
         </service>
 

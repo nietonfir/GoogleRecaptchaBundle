@@ -22,6 +22,10 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('sitekey')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end() // sitekey
                 ->arrayNode('validation')
                     ->isRequired()
                     ->cannotBeEmpty()
