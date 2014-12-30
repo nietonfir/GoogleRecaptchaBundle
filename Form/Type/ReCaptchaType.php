@@ -3,6 +3,7 @@
 namespace Nietonfir\Google\ReCaptchaBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ReCaptchaType extends AbstractType
@@ -12,6 +13,11 @@ class ReCaptchaType extends AbstractType
     public function __construct($sitekey)
     {
         $this->sitekey = $sitekey;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('g-recaptcha-response');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
