@@ -19,6 +19,7 @@ class ReCaptchaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('g-recaptcha-response', null, array(
+            'error_bubbling' => true,
             'constraints' => array(
                 new NotBlank()
             )
