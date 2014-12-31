@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Nietonfir\Google\ReCaptchaBundle\Validator\Constraints\ReCaptchaResponse;
 
 class ReCaptchaType extends AbstractType
 {
@@ -21,6 +22,7 @@ class ReCaptchaType extends AbstractType
         $builder->add('g-recaptcha-response', null, array(
             'error_bubbling' => true,
             'constraints' => array(
+                new ReCaptchaResponse(),
                 new NotBlank()
             )
         ));
