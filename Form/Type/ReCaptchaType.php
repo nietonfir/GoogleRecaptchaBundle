@@ -17,31 +17,20 @@ class ReCaptchaType extends AbstractType
         $this->sitekey = $sitekey;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $builder->add('g-recaptcha-response', null, array(
-            'error_bubbling' => true,
+        $resolver->setDefaults(array(
+            'mapped' => false,
+            'compound' => false,
+            'attr' => array(
+                'data-sitekey' => $this->sitekey,
+                'class' => 'g-recaptcha'
+            ),
             'constraints' => array(
                 new ReCaptchaResponse(),
                 new NotBlank()
             )
         ));
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'mapped' => false,
-            'attr' => array(
-                'data-sitekey' => $this->sitekey,
-                'class' => 'g-recaptcha'
-            )
-        ));
-    }
-
-    public function getParent()
-    {
-        return 'form';
     }
 
     public function getName()

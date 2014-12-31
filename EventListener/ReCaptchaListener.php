@@ -36,7 +36,7 @@ class ReCaptchaListener
             $captchaResponse = $requestData->get('g-recaptcha-response', null);
             if ($captchaResponse) {
                 $formData = $requestData->get($this->form);
-                $formData[$this->field]['g-recaptcha-response'] = $captchaResponse;
+                $formData[$this->field] = $captchaResponse;
 
                 $requestData->set($this->form, $formData);
                 $requestData->remove('g-recaptcha-response');
