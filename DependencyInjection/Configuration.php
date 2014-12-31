@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('nietonfir_google_re_captcha');
+        $rootNode = $treeBuilder->root('nietonfir_google_recaptcha');
 
         $rootNode
             ->children()

@@ -23,14 +23,19 @@ class NietonfirGoogleReCaptchaExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         // set the reCAPTCHA API key
-        $container->setParameter('nietonfir_google_re_captcha.sitekey', $config['sitekey']);
+        $container->setParameter('nietonfir_google_recaptcha.sitekey', $config['sitekey']);
 
         // set required validation parameters
         foreach($config['validation'] as $k => $v) {
-            $container->setParameter('nietonfir_google_re_captcha.validation.' . $k, $v);
+            $container->setParameter('nietonfir_google_recaptcha.validation.' . $k, $v);
         }
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+    }
+
+    public function getAlias()
+    {
+        return 'nietonfir_google_recaptcha';
     }
 }

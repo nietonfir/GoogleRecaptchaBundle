@@ -12,13 +12,13 @@
 
     <services>
         <service id="nietonfir_google_recaptcha.form.type.recaptcha" class="%nietonfir_google_recaptcha.form.type.recaptcha.class%">
-            <argument>%nietonfir_google_re_captcha.sitekey%</argument>
+            <argument>%nietonfir_google_recaptcha.sitekey%</argument>
             <tag name="form.type" alias="recaptcha" />
         </service>
 
         <service id="nietonfir_google_recaptcha.recaptcha_listener" class="%nietonfir_google_recaptcha.recaptcha_listener.class%">
-            <argument>%nietonfir_google_re_captcha.validation.form_name%</argument>
-            <argument>%nietonfir_google_re_captcha.validation.field_name%</argument>
+            <argument>%nietonfir_google_recaptcha.validation.form_name%</argument>
+            <argument>%nietonfir_google_recaptcha.validation.field_name%</argument>
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
         </service>
 
