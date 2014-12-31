@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="nietonfir_google_recaptcha.form.type.recaptcha.class">Nietonfir\Google\ReCaptchaBundle\Form\Type\ReCaptchaType</parameter>
         <parameter key="nietonfir_google_recaptcha.recaptcha_listener.class">Nietonfir\Google\ReCaptchaBundle\EventListener\ReCaptchaListener</parameter>
+        <parameter key="nietonfir_google_recaptcha.response_validator.class">Nietonfir\Google\ReCaptchaBundle\Validator\Constraints\ReCaptchaResponseValidator</parameter>
     </parameters>
 
     <services>
@@ -19,6 +20,13 @@
             <argument>%nietonfir_google_re_captcha.validation.form_name%</argument>
             <argument>%nietonfir_google_re_captcha.validation.field_name%</argument>
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
+        </service>
+
+        <service id="nietonfir_google_recaptcha.response_validator" class="%nietonfir_google_recaptcha.response_validator.class%">
+            <!-- TODO - inject ReCaptchaService -->
+            <!-- <argument type="service" id="doctrine.orm.default_entity_manager" /> -->
+            <argument>true</argument>
+            <tag name="validator.constraint_validator" alias="recaptcha_response_validator" />
         </service>
     </services>
 </container>
