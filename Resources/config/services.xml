@@ -27,9 +27,7 @@
         </service>
 
         <service id="nietonfir_google_recaptcha.response_validator" class="%nietonfir_google_recaptcha.response_validator.class%">
-            <!-- TODO - inject ReCaptchaService -->
-            <!-- <argument type="service" id="doctrine.orm.default_entity_manager" /> -->
-            <argument>true</argument>
+            <argument type="service" id="nietonfir_google_recaptcha.revisor" />
             <tag name="validator.constraint_validator" alias="recaptcha_response_validator" />
         </service>
 
