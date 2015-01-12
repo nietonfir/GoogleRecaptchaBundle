@@ -24,6 +24,8 @@ class NietonfirGoogleReCaptchaExtension extends Extension
 
         // set the reCAPTCHA API key
         $container->setParameter('nietonfir_google_recaptcha.sitekey', $config['sitekey']);
+        // set the reCAPTCHA API secret
+        $container->setParameter('nietonfir_google_recaptcha.secret', $config['secret']);
 
         // set required validation parameters
         foreach($config['validation'] as $k => $v) {

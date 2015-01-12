@@ -26,6 +26,10 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end() // sitekey
+                ->scalarNode('secret')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end() // secret
                 ->arrayNode('validation')
                     ->isRequired()
                     ->cannotBeEmpty()
