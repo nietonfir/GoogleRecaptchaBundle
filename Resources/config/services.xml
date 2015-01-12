@@ -11,6 +11,7 @@
         <parameter key="nietonfir_google_recaptcha.recaptcha_factory.class">Nietonfir\Google\ReCaptchaBundle\DependencyInjection\ReCaptcha\ReCaptchaFactory</parameter>
         <parameter key="nietonfir_google_recaptcha.recaptcha.class">Nietonfir\Google\ReCaptcha\ReCaptcha</parameter>
         <parameter key="nietonfir_google_recaptcha.request_data.class">Nietonfir\Google\ReCaptchaBundle\Api\RequestDataWrapper</parameter>
+        <parameter key="nietonfir_google_recaptcha.revisor.class">Nietonfir\Google\ReCaptchaBundle\DependencyInjection\ReCaptcha\Revisor</parameter>
     </parameters>
 
     <services>
@@ -39,6 +40,12 @@
 
         <service id="nietonfir_google_recaptcha.request_data" class="%nietonfir_google_recaptcha.request_data.class%" public="false">
             <argument>%nietonfir_google_recaptcha.secret%</argument>
+        </service>
+
+        <service id="nietonfir_google_recaptcha.revisor" class="%nietonfir_google_recaptcha.revisor.class%" public="false">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="nietonfir_google_recaptcha.recaptcha" />
+            <argument type="service" id="nietonfir_google_recaptcha.request_data" />
         </service>
     </services>
 </container>
