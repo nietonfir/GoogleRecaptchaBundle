@@ -10,6 +10,7 @@
         <parameter key="nietonfir_google_recaptcha.response_validator.class">Nietonfir\Google\ReCaptchaBundle\Validator\Constraints\ReCaptchaResponseValidator</parameter>
         <parameter key="nietonfir_google_recaptcha.recaptcha_factory.class">Nietonfir\Google\ReCaptchaBundle\DependencyInjection\ReCaptcha\ReCaptchaFactory</parameter>
         <parameter key="nietonfir_google_recaptcha.recaptcha.class">Nietonfir\Google\ReCaptcha\ReCaptcha</parameter>
+        <parameter key="nietonfir_google_recaptcha.request_data.class">Nietonfir\Google\ReCaptchaBundle\Api\RequestDataWrapper</parameter>
     </parameters>
 
     <services>
@@ -34,6 +35,10 @@
         <service id="nietonfir_google_recaptcha.recaptcha_factory" class="%nietonfir_google_recaptcha.recaptcha_factory.class%" />
         <service id="nietonfir_google_recaptcha.recaptcha" class="%nietonfir_google_recaptcha.recaptcha.class%" public="false">
             <factory service="nietonfir_google_recaptcha.recaptcha_factory" method="create" />
+        </service>
+
+        <service id="nietonfir_google_recaptcha.request_data" class="%nietonfir_google_recaptcha.request_data.class%" public="false">
+            <argument>%nietonfir_google_recaptcha.secret%</argument>
         </service>
     </services>
 </container>
