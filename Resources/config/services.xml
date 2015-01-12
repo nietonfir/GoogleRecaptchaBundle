@@ -8,6 +8,8 @@
         <parameter key="nietonfir_google_recaptcha.form.type.recaptcha.class">Nietonfir\Google\ReCaptchaBundle\Form\Type\ReCaptchaType</parameter>
         <parameter key="nietonfir_google_recaptcha.recaptcha_listener.class">Nietonfir\Google\ReCaptchaBundle\EventListener\ReCaptchaListener</parameter>
         <parameter key="nietonfir_google_recaptcha.response_validator.class">Nietonfir\Google\ReCaptchaBundle\Validator\Constraints\ReCaptchaResponseValidator</parameter>
+        <parameter key="nietonfir_google_recaptcha.recaptcha_factory.class">Nietonfir\Google\ReCaptchaBundle\DependencyInjection\ReCaptcha\ReCaptchaFactory</parameter>
+        <parameter key="nietonfir_google_recaptcha.recaptcha.class">Nietonfir\Google\ReCaptcha\ReCaptcha</parameter>
     </parameters>
 
     <services>
@@ -27,6 +29,11 @@
             <!-- <argument type="service" id="doctrine.orm.default_entity_manager" /> -->
             <argument>true</argument>
             <tag name="validator.constraint_validator" alias="recaptcha_response_validator" />
+        </service>
+
+        <service id="nietonfir_google_recaptcha.recaptcha_factory" class="%nietonfir_google_recaptcha.recaptcha_factory.class%" />
+        <service id="nietonfir_google_recaptcha.recaptcha" class="%nietonfir_google_recaptcha.recaptcha.class%" public="false">
+            <factory service="nietonfir_google_recaptcha.recaptcha_factory" method="create" />
         </service>
     </services>
 </container>
