@@ -4,6 +4,8 @@ GoogleReCaptchaBundle
 [ReCAPTCHA](https://developers.google.com/recaptcha/) is a free CAPTCHA service that protects websites from spam and abuse.
 This bundle uses the [GoogleReCaptcha](https://github.com/nietonfir/GoogleReCaptcha) library or validating a users "No CAPTCHA reCAPTCHA" response and provides a custom form type, a custom validation constraint as well as a validator to use with the [Symfony Form Component](https://github.com/symfony/Form).
 
+[![Latest Stable Version](https://poser.pugx.org/nietonfir/google-recaptcha-bundle/v/stable.svg)](https://packagist.org/packages/nietonfir/google-recaptcha-bundle) [![Latest Unstable Version](https://poser.pugx.org/nietonfir/google-recaptcha-bundle/v/unstable.svg)](https://packagist.org/packages/nietonfir/google-recaptcha-bundle) [![License](https://poser.pugx.org/nietonfir/google-recaptcha-bundle/license.svg)](https://packagist.org/packages/nietonfir/google-recaptcha-bundle)
+
 Installation
 ------------
 
