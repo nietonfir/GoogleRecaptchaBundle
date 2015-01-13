@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "nietonfir/google-recaptcha": "@dev-master"
+        "nietonfir/google-recaptcha": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7"
