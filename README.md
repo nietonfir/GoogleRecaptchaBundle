@@ -86,6 +86,7 @@ Usage
 -----
 
 Using the Bundle is dead simple:
+
 1. Create your form type as usual
 2. Add a field using the `recaptcha` field type
     
