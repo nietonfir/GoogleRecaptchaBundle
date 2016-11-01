@@ -92,13 +92,13 @@ Using the Bundle is dead simple:
 1. Create your form type as usual
 2. Add a field using the `recaptcha` field type
     
-    ```
+    ```php
     $builder->add('recaptcha', 'recaptcha');
     ```
     
 3. Make your controller implement `ReCaptchaValidationInterface`
     
-    ```
+    ```php
     use Nietonfir\Google\ReCaptchaBundle\Controller\ReCaptchaValidationInterface;
 
     class DefaultController extends Controller implements ReCaptchaValidationInterface
