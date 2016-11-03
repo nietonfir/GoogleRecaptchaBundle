@@ -24,7 +24,7 @@
         "symfony/form": "~2.5",
         "symfony/framework-bundle": "~2.5",
         "symfony/validator": "~2.5",
-        "nietonfir/google-recaptcha": "dev-master"
+        "nietonfir/google-recaptcha": "@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7"
