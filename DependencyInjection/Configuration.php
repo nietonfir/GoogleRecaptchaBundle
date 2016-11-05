@@ -41,6 +41,8 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('field_name')
                             ->isRequired()
                             ->cannotBeEmpty()
+                            ->defaultValue('recaptcha')
+                            ->treatNullLike('recaptcha')
                         ->end()
                     ->end()
                 ->end() // validation

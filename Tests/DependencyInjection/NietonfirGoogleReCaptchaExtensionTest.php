@@ -48,6 +48,41 @@ class NietonfirGoogleReCaptchaExtensionTest extends \PHPUnit_Framework_TestCase
                 'secret'     => $secret,
                 'validation' => array(
                     'form_name'  => $formName,
+                    'field_name' => null
+                )
+            )
+        );
+        $container = $this->getContainer();
+
+        $this->extension->load($configs, $container);
+
+        $this->assertTrue($container->hasParameter($this->root . '.sitekey'));
+        $this->assertEquals($key, $container->getParameter($this->root . '.sitekey'));
+
+        $this->assertTrue($container->hasParameter($this->root . '.secret'));
+        $this->assertEquals($secret, $container->getParameter($this->root . '.secret'));
+
+        // validation by itself isn't exposed!
+        $this->assertTrue($container->hasParameter($this->root . '.validation.form_name'));
+        $this->assertEquals($formName, $container->getParameter($this->root . '.validation.form_name'));
+
+        $this->assertTrue($container->hasParameter($this->root . '.validation.field_name'));
+        $this->assertEquals($fieldName, $container->getParameter($this->root . '.validation.field_name'));
+    }
+
+    public function testLoadConfigCustom()
+    {
+        $key       = '1234567';
+        $secret    = 's3cr3T';
+        $formName  = 'example_form_name';
+        $fieldName = 'my_field_name';
+
+        $configs = array(
+            array(
+                'sitekey'    => $key,
+                'secret'     => $secret,
+                'validation' => array(
+                    'form_name'  => $formName,
                     'field_name' => $fieldName
                 )
             )
@@ -67,6 +102,7 @@ class NietonfirGoogleReCaptchaExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($formName, $container->getParameter($this->root . '.validation.form_name'));
 
         $this->assertTrue($container->hasParameter($this->root . '.validation.field_name'));
+        $this->assertNotEquals('recaptcha', $container->getParameter($this->root . '.validation.field_name'));
         $this->assertEquals($fieldName, $container->getParameter($this->root . '.validation.field_name'));
     }
 
