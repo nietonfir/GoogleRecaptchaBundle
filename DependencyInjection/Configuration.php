@@ -23,10 +23,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('sitekey')
+                    ->info('The sitekey provided by reCAPTCHA.')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end() // sitekey
                 ->scalarNode('secret')
+                    ->info('The secret provided by reCAPTCHA.')
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end() // secret
@@ -35,10 +37,12 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->children()
                         ->scalarNode('form_name')
+                            ->info('The name of the form that should have a reCAPTCHA.')
                             ->isRequired()
                             ->cannotBeEmpty()
                         ->end()
                         ->scalarNode('field_name')
+                            ->info('The field name that will hold the reCAPTCHA.')
                             ->isRequired()
                             ->cannotBeEmpty()
                             ->defaultValue('recaptcha')
