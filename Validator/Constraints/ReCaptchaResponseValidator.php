@@ -18,8 +18,6 @@ class ReCaptchaResponseValidator extends ConstraintValidator
     {
         $response = $this->revisor->verify($value);
         if (!$response->isValid()) {
-            var_dump($response->getErrors());
-
             // If you're using the new 2.5 validation API (you probably are!)
             $this->context->buildViolation($constraint->message)->addViolation();
 
