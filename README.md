@@ -27,7 +27,7 @@ Or add GoogleReCaptchaBundle in your `composer.json`
 
 ```js
 "require": {
-    "nietonfir/google-recaptcha-bundle": "dev-master"
+    "nietonfir/google-recaptcha-bundle": "@stable"
 }
 ```
 
@@ -93,7 +93,9 @@ Using the Bundle is dead simple:
 2. Add a field using the `recaptcha` field type
     
     ```php
-    $builder->add('recaptcha', 'recaptcha');
+    use Nietonfir\Google\ReCaptchaBundle\Form\Type\ReCaptchaType;
+    
+    $builder->add('recaptcha', ReCaptchaType::class);
     ```
     
 3. Make your controller implement `ReCaptchaValidationInterface`
