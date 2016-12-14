@@ -14,7 +14,9 @@ class ReCaptchaFactory implements ReCaptchaFactoryInterface
     public function create()
     {
         return new ReCaptcha(
-            new Client(array('defaults' => array('verify' => false))),
+            // TODO - add possibility to configure the client, e.g.:
+            //        new Client(array('defaults' => array('verify' => false))),
+            new Client(),
             new Response()
         );
     }
