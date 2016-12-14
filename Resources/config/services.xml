@@ -28,7 +28,7 @@
 
         <service id="nietonfir_google_recaptcha.response_validator" class="%nietonfir_google_recaptcha.response_validator.class%">
             <argument type="service" id="nietonfir_google_recaptcha.revisor" />
-            <tag name="validator.constraint_validator" alias="recaptcha_response_validator" />
+            <tag name="validator.constraint_validator" />
         </service>
 
         <service id="nietonfir_google_recaptcha.recaptcha_factory" class="%nietonfir_google_recaptcha.recaptcha_factory.class%" />
