@@ -18,14 +18,7 @@ class ReCaptchaResponseValidator extends ConstraintValidator
     {
         $response = $this->revisor->verify($value);
         if (!$response->isValid()) {
-            // If you're using the new 2.5 validation API (you probably are!)
             $this->context->buildViolation($constraint->message)->addViolation();
-
-            // If you're using the old 2.4 validation API
-            // $this->context->addViolation(
-            //     $constraint->message,
-            //     array('%string%' => $value)
-            // );
         }
     }
 }
