@@ -98,7 +98,12 @@ Using the Bundle is dead simple:
     $builder->add('recaptcha', ReCaptchaType::class);
     ```
     
-3. Make your controller implement `ReCaptchaValidationInterface`
+3. Add the necessary javascript library to your template
+    ```html
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+    ```
+
+4. Make your controller implement `ReCaptchaValidationInterface`
     
     ```php
     use Nietonfir\Google\ReCaptchaBundle\Controller\ReCaptchaValidationInterface;
@@ -106,8 +111,8 @@ Using the Bundle is dead simple:
     class DefaultController extends Controller implements ReCaptchaValidationInterface
     ```
     
-4. …
-5. Profit!
+5. …
+6. Profit!
 
 Now when `form->isValid()` is called, the submitted reCAPTCHA response is validated against the Google API.
 Be advised that both the form and the field name used have to be set in `config.yml`.
