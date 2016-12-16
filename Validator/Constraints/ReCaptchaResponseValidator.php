@@ -23,6 +23,8 @@ class ReCaptchaResponseValidator extends ConstraintValidator
 
         if (null === $value || '' === $value) {
             $this->context->buildViolation($constraint->message)->addViolation();
+
+            return;
         }
 
         if (!is_scalar($value) && !(is_object($value) && method_exists($value, '__toString'))) {
