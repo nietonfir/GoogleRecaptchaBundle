@@ -20,10 +20,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "symfony/config": "~2.5",
-        "symfony/form": "~2.5",
-        "symfony/framework-bundle": "~2.5",
-        "symfony/validator": "~2.5",
+        "symfony/config": "~3.0",
+        "symfony/form": "~3.0",
+        "symfony/framework-bundle": "~3.0",
+        "symfony/validator": "~3.0",
         "nietonfir/google-recaptcha": "@stable"
     },
     "require-dev": {
