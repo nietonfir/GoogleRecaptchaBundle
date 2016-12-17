@@ -120,7 +120,7 @@ Be advised that both the form and the field name used have to be set in `config.
 TODOs
 -----
 * [x] Add some `info()` to the form & field name config values in `Configuration.php`
-* [ ] Translate the error messages returned form the Google API to something more meaningful
+* [x] Translate the error messages returned from the Google API to something more meaningful
 * [ ] Update documentation
 * [ ] Add some more examples
 * [ ] Add missing unit tests

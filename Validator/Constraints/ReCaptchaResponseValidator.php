@@ -22,7 +22,7 @@ class ReCaptchaResponseValidator extends ConstraintValidator
         }
 
         if (null === $value || '' === $value) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            $this->context->buildViolation($constraint->responseMissingMessage)->addViolation();
 
             return;
         }
@@ -35,7 +35,10 @@ class ReCaptchaResponseValidator extends ConstraintValidator
 
         $response = $this->revisor->verify($value);
         if (!$response->isValid()) {
-            $this->context->buildViolation($constraint->message)->addViolation();
+            foreach($response->getErrors() as $upstreamError) {
+                $message = ReCaptchaResponse::translateUpstreamResponse($upstreamError);
+                $this->context->buildViolation($constraint->$message)->addViolation();
+            }
         }
     }
 }
