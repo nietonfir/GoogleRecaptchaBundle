@@ -7,14 +7,11 @@ use Nietonfir\Google\ReCaptchaBundle\Controller\ReCaptchaValidationInterface;
 
 class ReCaptchaListener
 {
-    private $form;
+    private $validation;
 
-    private $field;
-
-    public function __construct($form, $field)
+    public function __construct(array $validations = array())
     {
-        $this->form = $form;
-        $this->field = $field;
+        $this->validations = $validations;
     }
 
     public function onKernelController(FilterControllerEvent $event)
@@ -35,11 +32,18 @@ class ReCaptchaListener
 
             $captchaResponse = $requestData->get('g-recaptcha-response', null);
             if ($captchaResponse) {
-                $formData = $requestData->get($this->form);
-                $formData[$this->field] = $captchaResponse;
+                foreach($this->validations as $formName => $fieldName) {
+                    if ($requestData->has($formName)) {
+                        $formData = $requestData->get($formName);
+                        $formData[$fieldName] = $captchaResponse;
 
-                $requestData->set($this->form, $formData);
-                $requestData->remove('g-recaptcha-response');
+                        $requestData->set($formName, $formData);
+                        $requestData->remove('g-recaptcha-response');
+
+                        break;
+                    }
+                }
+
             }
         }
     }

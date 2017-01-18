@@ -27,10 +27,12 @@ class NietonfirGoogleReCaptchaExtension extends Extension
         // set the reCAPTCHA API secret
         $container->setParameter('nietonfir_google_recaptcha.secret', $config['secret']);
 
+        $validations = array();
         // set required validation parameters
-        foreach($config['validation'] as $k => $v) {
-            $container->setParameter('nietonfir_google_recaptcha.validation.' . $k, $v);
+        foreach($config['validations'] as $v) {
+            $validations[$v['form_name']] = $v['field_name'];
         }
+        $container->setParameter('nietonfir_google_recaptcha.validations', $validations);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');

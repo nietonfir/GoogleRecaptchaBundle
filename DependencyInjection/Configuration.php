@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('nietonfir_google_recaptcha');
 
         $rootNode
+            ->fixXmlConfig('validation')
             ->children()
                 ->scalarNode('sitekey')
                     ->info('The sitekey provided by reCAPTCHA.')
@@ -32,24 +33,26 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end() // secret
-                ->arrayNode('validation')
+                ->arrayNode('validations')
                     ->isRequired()
                     ->cannotBeEmpty()
-                    ->children()
-                        ->scalarNode('form_name')
-                            ->info('The name of the form that should have a reCAPTCHA.')
-                            ->isRequired()
-                            ->cannotBeEmpty()
-                        ->end()
-                        ->scalarNode('field_name')
-                            ->info('The field name that will hold the reCAPTCHA.')
-                            ->isRequired()
-                            ->cannotBeEmpty()
-                            ->defaultValue('recaptcha')
-                            ->treatNullLike('recaptcha')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('form_name')
+                                ->info('The name of the form that should have a reCAPTCHA.')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                            ->end()
+                            ->scalarNode('field_name')
+                                ->info('The field name that will hold the reCAPTCHA.')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                                ->defaultValue('recaptcha')
+                                ->treatNullLike('recaptcha')
+                            ->end()
                         ->end()
                     ->end()
-                ->end() // validation
+                ->end() // validations
             ->end()
         ;
 
