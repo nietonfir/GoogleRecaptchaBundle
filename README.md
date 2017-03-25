@@ -55,14 +55,31 @@ public function registerBundles()
 Configuration
 -------------
 
-Add the following configuration to your `config.yml`.
+Add the following simple configuration to your `config.yml`.
 ```yaml
 nietonfir_google_recaptcha:
     sitekey: <your_site_key_here>
     secret: <and_your_secret_here>
+    validation: '<your_form_name>'
+```
+
+### Multiple forms
+
+ReCaptcha can also be added to different forms (while not on the same page!):
+```yaml
+nietonfir_google_recaptcha:
+    validation: [ '<your_form_name_A>', '<your_form_name_B>' ]
+```
+
+### Custom form field name
+
+The form field name containing the recaptcha response, which defaults to `recaptcha`, can be customized as well:
+```yaml
+nietonfir_google_recaptcha:
     validation:
-        form_name: <your_form_name>
-        field_name: recaptcha
+        forms:
+            - {form_name: '<your_form_name_A>', field_name: 'recaptcha'}
+            - {form_name: '<your_form_name_B>', field_name: 'recaptcha'}
 ```
 
 Additionally you have to add the corresponding form field themes depending on
@@ -111,9 +128,6 @@ Using the Bundle is dead simple:
     class DefaultController extends Controller implements ReCaptchaValidationInterface
     ```
     
-5. …
-6. Profit!
-
 Now when `form->isValid()` is called, the submitted reCAPTCHA response is validated against the Google API.
 Be advised that both the form and the field name used have to be set in `config.yml`.
 
@@ -123,5 +137,4 @@ TODOs
 * [x] Translate the error messages returned from the Google API to something more meaningful
 * [ ] Update documentation
 * [ ] Add some more examples
-* [ ] Add missing unit tests
-
+* [x] Add missing unit tests

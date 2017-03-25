@@ -29,7 +29,7 @@ class NietonfirGoogleReCaptchaExtension extends Extension
 
         $validations = array();
         // set required validation parameters
-        foreach($config['validations'] as $v) {
+        foreach($config['validation']['forms'] as $v) {
             $validations[$v['form_name']] = $v['field_name'];
         }
         $container->setParameter('nietonfir_google_recaptcha.validations', $validations);

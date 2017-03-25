@@ -21,7 +21,6 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('nietonfir_google_recaptcha');
 
         $rootNode
-            ->fixXmlConfig('validation')
             ->children()
                 ->scalarNode('sitekey')
                     ->info('The sitekey provided by reCAPTCHA.')
@@ -33,28 +32,59 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end() // secret
-                ->arrayNode('validations')
+                ->arrayNode('validation')
+                    ->fixXmlConfig('form')
                     ->isRequired()
                     ->cannotBeEmpty()
                     ->beforeNormalization()
                         ->ifString()
-                        ->then(function ($v) { return array(['form_name' => $v]); })
+                        ->then(function ($v) { return array('forms' => [['form_name' => $v]]); })
                     ->end()
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('form_name')
-                                ->info('The name of the form that should have a reCAPTCHA.')
-                                ->isRequired()
-                                ->cannotBeEmpty()
-                            ->end()
-                            ->scalarNode('field_name')
-                                ->info('The field name that will hold the reCAPTCHA.')
-                                ->defaultValue('recaptcha')
-                                ->treatNullLike('recaptcha')
-                            ->end()
+                    ->beforeNormalization()
+                        ->ifTrue(function ($v) { return is_array($v) && array_key_exists('form_name', $v); })
+                        ->then(function ($v) {
+                            @trigger_error('Specifying "validation.form_name" & "validation.field_name" will be removed in future versions. Use the "validation.forms" node for configuration.', E_USER_DEPRECATED);
+
+                            return array('forms' => [$v]);
+                        })
+                    ->end()
+                    ->beforeNormalization()
+                        ->ifTrue(function ($v) { return is_array($v) && !array_key_exists('forms', $v) && !array_key_exists('form', $v); })
+                        ->then(function ($v) {
+                            return array('forms' => array_map(function($a) {
+                                return ['form_name' => $a];
+                            }, $v));
+                        })
+                    ->end()
+                    ->children()
+                        ->scalarNode('form_name')
+                            ->info('The name of the form that should have a reCAPTCHA.')
                         ->end()
+                        ->scalarNode('field_name')
+                            ->info('The field name that will hold the reCAPTCHA.')
+                            ->defaultValue('recaptcha')
+                            ->treatNullLike('recaptcha')
+                        ->end()
+                        ->arrayNode('forms')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('form_name')
+                                        ->info('The name of the form that should have a reCAPTCHA.')
+                                        ->isRequired()
+                                        ->cannotBeEmpty()
+                                    ->end()
+                                    ->scalarNode('field_name')
+                                        ->info('The field name that will hold the reCAPTCHA.')
+                                        ->defaultValue('recaptcha')
+                                        ->treatNullLike('recaptcha')
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end() // forms
                     ->end()
-                ->end() // validations
+                ->end() // validation
             ->end()
         ;
 
