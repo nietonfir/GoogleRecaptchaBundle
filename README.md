@@ -27,7 +27,7 @@ Or add GoogleReCaptchaBundle in your `composer.json`
 
 ```js
 "require": {
-    "nietonfir/google-recaptcha-bundle": "@stable"
+    "nietonfir/google-recaptcha-bundle": "v0.0.3"
 }
 ```
 
